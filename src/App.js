@@ -143,7 +143,7 @@ function App() {
           const coordinates = e.features[0].geometry.coordinates.slice();
           const { properties } = e.features[0];
 
-          const popup = new mapboxgl.Popup()
+           new mapboxgl.Popup()
             .setLngLat(coordinates)
             .setHTML(`
               <h3>${properties.applicant}</h3>
