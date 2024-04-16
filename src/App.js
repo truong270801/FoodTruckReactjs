@@ -14,22 +14,7 @@ function App() {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
     const map = initializeMap(mapContainer.current);
 
-    const data = {
-      type: "FeatureCollection",
-      features: [
-        {
-          type: "Feature",
-          geometry: {
-            type: "Point",
-            coordinates: [-122.40945776860957, 37.7653468958055],
-          },
-          properties: {
-            name: "My Location",
-          },
-        },
-      ],
-    };
-
+   
     map.on("load", () => {
       loadLocationIcon(map);
       loadTruckLocations(map);
