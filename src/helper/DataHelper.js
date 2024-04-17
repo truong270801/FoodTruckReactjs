@@ -1,5 +1,5 @@
 
-
+import mapboxgl from "mapbox-gl";
 export async function fetchData(url) {
   try {
     const response = await fetch(url);
@@ -63,6 +63,29 @@ export function addDataToMap(map, features) {
     data: {
       type: "FeatureCollection",
       features: features,
-    },
+    }
   });
+  
+    
+      map.on('click', 'truck-locations', function (e) {
+        var coordinates = e.features[0].geometry.coordinates.slice();
+  const name = e.features[0].properties.applicant;
+  const foodItems = e.features[0].properties.fooditems;
+  const facilityType = e.features[0].properties.facilitytype;
+  const Address = e.features[0].properties.address;
+  const locationDescription = e.features[0].properties.locationdescription;
+  const Status = e.features[0].properties.status;
+  const Dayshours = e.features[0].properties.dayshours;
+  const Expirationdate = e.features[0].properties.expirationdate;
+  const Approved = e.features[0].properties.approved;
+        new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(`<h3>${name}</h3><p><b>Facility Type: </b>${facilityType}</p><p><b>Address: </b>${Address}</p><p><b>Food Items: </b>${foodItems}</p><p><b>Location Description: </b>${locationDescription}</p><p><b>Status: </b><i>${Status}</i></p><p><b>Days hours: </b>${Dayshours}</p><p><b>Approved: </b>${Approved}</p><p><b>Expiration date: </b>${Expirationdate}</p>`)
+        .addTo(map);
+      
+      });
+     
+  
+    
+ 
 }
